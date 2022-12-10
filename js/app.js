@@ -13,10 +13,7 @@ const winningCombos = [
 
 /*---------------------------- Variables (state) ----------------------------*/
 
-let board = [1, null, null, null, null, null, null, null, null];
-let turn = 1;
-let winner = false;
-let tie = false;
+let board, turn, winner, tie;
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -32,11 +29,14 @@ squareEls.forEach(function (box) {
 /*-------------------------------- Functions --------------------------------*/
 
 function init() {
-  board = [1, -1, null, null, null, null, null, null, null];
+  board = [null, null, null, null, null, null, null, null, null];
   turn = 1;
   winner = false;
   tie = false;
+  render();
 }
+
+init();
 
 function render() {
   updateBoard();
@@ -51,23 +51,75 @@ function updateBoard() {
     if (element === -1) {
       squareEls[index].textContent = "o";
     }
+    if (element === null) {
+      squareEls[index].textContent = "";
+    }
   });
 }
 
-function updateMessage() {}
+function updateMessage() {
+  if (winner === false && tie === false) {
+    return turn;
+  }
+  if (winner === false && tie === true) {
+    return "It's a tie!";
+  }
+}
 
 function handleClick(evt) {
   const sqIdx = evt.target.id.slice(2);
-  board.forEach(function (box) {
-    if (box === "1") {
-      console.log("works");
-    }
-  });
+  if (board[sqIdx] !== null) {
+    return;
+  }
+  if (winner === true) {
+    return;
+  }
+  console.log(sqIdx);
   // console.log(sqIdx);
+  placePiece(sqIdx);
+  updateBoard();
+  checkForTie();
+  checkForWinner();
+  switchPlayerTurn();
+  render();
 }
 
-init();
-render();
+function placePiece(pieceIdx) {
+  board[pieceIdx] = turn;
+  // board.splice(pieceIdx, 1, turn);
+}
+
+function checkForTie() {
+  for (let i = 0; i < board.length; i++) {
+    if (board[i] === null) {
+      tie = false;
+    } else {
+      tie = true;
+    }
+  }
+}
+
+function checkForWinner() {
+  for (let i = 0; i < winningCombos.length; i++) {
+    const winCombo = Math.abs(
+      board[winningCombos[i][0]] +
+        board[winningCombos[i][1]] +
+        board[winningCombos[i][2]]
+    );
+
+    if (winCombo === 3) {
+      winner = true;
+    }
+  }
+}
+
+function switchPlayerTurn() {
+  if (winner === true) {
+    return;
+  } else {
+    turn *= -1;
+  }
+}
 
 //// Step 1 - Define the required variables used to track the state of the game
 
