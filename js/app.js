@@ -103,6 +103,7 @@ function checkForTie() {
   if (tieResult) {
     tie = true;
     messageEl.textContent = "It's a tie!";
+    messageEl.classList.add("animate__animated", "animate__shakeX");
   } else {
     tie = false;
   }
