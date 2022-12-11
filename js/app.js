@@ -20,6 +20,7 @@ let board, turn, winner, tie;
 const squareEls = document.querySelectorAll(".sqr");
 const messageEl = document.getElementById("message");
 const resetBtnEl = document.getElementById("resetBtn");
+const boardEl = document.querySelector(".board");
 
 /*----------------------------- Event Listeners -----------------------------*/
 
@@ -36,6 +37,10 @@ function init() {
   turn = 1;
   winner = false;
   tie = false;
+  if (winner === false) {
+    messageEl.textContent = "";
+  }
+  boardEl.classList.remove("animate__animated", "animate__tada");
   render();
 }
 
@@ -113,8 +118,9 @@ function checkForWinner() {
 
     if (winCombo === 3) {
       winner = true;
+      confetti.start(1500);
       messageEl.textContent = "We have a winner!";
-      console.log("We Got a winner!");
+      boardEl.classList.add("animate__animated", "animate__tada");
     }
   }
 }

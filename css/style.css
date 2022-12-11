@@ -34,6 +34,7 @@ body {
 
 button {
   background-color: #646f4b;
+  color: #bfd2bf;
   font-family: "Indie Flower", cursive;
   font-size: 30px;
   margin-top: 35px;
@@ -49,12 +50,17 @@ button {
 
 button:hover {
   background-color: #bfd2bf;
+  color: #646f4b;
 }
 
-.mainBox h1,
-h2 {
+.mainBox h1 {
   text-align: center;
   font-size: 50px;
+  color: #bfd2bf;
+}
+
+.mainBox h2 {
+  color: #bfd2bf;
 }
 
 section.board {
@@ -62,10 +68,11 @@ section.board {
   grid-template-rows: repeat(3, 10vmin);
   grid-template-columns: repeat(3, 10vmin);
   grid-gap: 0vmin;
+  color: #bfd2bf;
 }
 
 .board div {
-  border: 3px solid black;
+  border: 3px solid #bfd2bf;
   font-size: 8vmin;
   text-align: center;
   vertical-align: middle;
