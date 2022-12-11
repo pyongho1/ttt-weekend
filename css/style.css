@@ -1,5 +1,6 @@
 body {
   background-color: #bfd2bf;
+  animation: changeBackgroundColor 7s infinite;
   /* Use a system font, if none are available use an available sans-sarif   font */
   /* font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif; */
@@ -9,6 +10,18 @@ body {
   /* height: 100vh;
   display: flex;
   flex-direction: column; */
+}
+
+@keyframes changeBackgroundColor {
+  0% {
+    background-color: #bfd2bf;
+  }
+  25% {
+    background-color: #7bb2d9;
+  }
+  50% {
+    background-color: #839d9a;
+  }
 }
 
 .container {

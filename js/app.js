@@ -40,7 +40,7 @@ function init() {
   if (winner === false) {
     messageEl.textContent = "";
   }
-  boardEl.classList.remove("animate__animated", "animate__tada");
+  boardEl.classList.remove("animate__animated", "animate__flash");
   render();
 }
 
@@ -54,10 +54,10 @@ function render() {
 function updateBoard() {
   board.forEach((element, index) => {
     if (element === 1) {
-      squareEls[index].textContent = "X";
+      squareEls[index].textContent = "🌝";
     }
     if (element === -1) {
-      squareEls[index].textContent = "O";
+      squareEls[index].textContent = "🌚";
     }
     if (element === null) {
       squareEls[index].textContent = "";
@@ -120,7 +120,7 @@ function checkForWinner() {
       winner = true;
       confetti.start(1500);
       messageEl.textContent = "We have a winner!";
-      boardEl.classList.add("animate__animated", "animate__tada");
+      boardEl.classList.add("animate__animated", "animate__flash");
     }
   }
 }
