@@ -19,12 +19,15 @@ let board, turn, winner, tie;
 
 const squareEls = document.querySelectorAll(".sqr");
 const messageEl = document.getElementById("message");
+const resetBtnEl = document.getElementById("resetBtn");
 
 /*----------------------------- Event Listeners -----------------------------*/
 
 squareEls.forEach(function (box) {
   box.addEventListener("click", handleClick);
 });
+
+resetBtnEl.addEventListener("click", init);
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -46,10 +49,10 @@ function render() {
 function updateBoard() {
   board.forEach((element, index) => {
     if (element === 1) {
-      squareEls[index].textContent = "x";
+      squareEls[index].textContent = "X";
     }
     if (element === -1) {
-      squareEls[index].textContent = "o";
+      squareEls[index].textContent = "O";
     }
     if (element === null) {
       squareEls[index].textContent = "";
@@ -63,6 +66,7 @@ function updateMessage() {
   }
   if (winner === false && tie === true) {
     return "It's a tie!";
+    console.log("We have a tie!");
   }
 }
 
@@ -90,12 +94,12 @@ function placePiece(pieceIdx) {
 }
 
 function checkForTie() {
-  for (let i = 0; i < board.length; i++) {
-    if (board[i] === null) {
-      tie = false;
-    } else {
-      tie = true;
-    }
+  let tieResult = board.every((box) => box !== null);
+  if (tieResult) {
+    tie = true;
+    messageEl.textContent = "It's a tie!";
+  } else {
+    tie = false;
   }
 }
 
@@ -109,6 +113,8 @@ function checkForWinner() {
 
     if (winCombo === 3) {
       winner = true;
+      messageEl.textContent = "We have a winner!";
+      console.log("We Got a winner!");
     }
   }
 }
