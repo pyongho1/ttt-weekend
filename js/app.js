@@ -72,7 +72,7 @@ function updateMessage() {
   } else if (winner === false && tie === true) {
     return "It's a tie!";
   } else {
-    messageEl.textContent = `It's ${turn === 1 ? "🌝" : "🌚"} wins the game!`;
+    messageEl.textContent = `${turn === 1 ? "🌝" : "🌚"} wins the game!`;
   }
 }
 
