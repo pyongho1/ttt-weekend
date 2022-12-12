@@ -67,11 +67,12 @@ function updateBoard() {
 
 function updateMessage() {
   if (winner === false && tie === false) {
+    messageEl.textContent = `It's ${turn === 1 ? "🌝" : "🌚"}'s turn`;
     return turn;
-  }
-  if (winner === false && tie === true) {
+  } else if (winner === false && tie === true) {
     return "It's a tie!";
-    console.log("We have a tie!");
+  } else {
+    messageEl.textContent = `It's ${turn === 1 ? "🌝" : "🌚"} wins the game!`;
   }
 }
 
